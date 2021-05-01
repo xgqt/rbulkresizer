@@ -29,6 +29,6 @@
 
 (define (app-exit)
   (displayln "[WARNING] Exiting the application")
-  (displayln "[INFO] Bye...")
+  (displayln "[ INFO  ] Bye...")
   (exit)
   )

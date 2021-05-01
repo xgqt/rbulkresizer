@@ -54,13 +54,13 @@
                       ;; Longest side
                       [(4) (scale-to-longest-element longest og-image)]
                       ;; Other
-                      [else (error "[ERROR] No support for this method")]
+                      [else (error "[ ERROR ] No support for this method")]
                       )
                     ]
           [to-path (path-replace-extension og-path #"_resized.png")]
           )
        (displayln (string-append
-                   "[INFO] Resizing: "
+                   "[ INFO  ] Resizing: "
                    (path->string og-path) " -> " (path->string to-path)
                    ))
        (save-image to-image to-path)

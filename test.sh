@@ -30,11 +30,11 @@ function bold() {
 }
 
 function info() {
-    bold "[INFO] ${*}"
+    bold "[ INFO  ] ${*}"
 }
 
 function die() {
-    bold "[ERROR] Failure at line ${LINENO}"
+    bold "[ ERROR ] Failure at line ${LINENO}"
     exit 1
 }
 

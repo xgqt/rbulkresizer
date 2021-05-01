@@ -42,7 +42,7 @@
 (define (display-images-to-resize)
   "On console and canvas write the paths of files from IMAGES-TO-RESIZE."
 
-  (displayln (string-append "[INFO] Images: " (~v images-to-resize)))
+  (displayln (string-append "[ INFO  ] Images: " (~v images-to-resize)))
 
   (send text insert
         (string-append
@@ -287,7 +287,7 @@
          #:start-with-files [start-with-files '()]
          )
   "Start the application"
-  (displayln "[INFO] Starting...")
+  (displayln "[ INFO  ] Starting...")
 
   ;; Add optional arguments
   (set! images-to-resize (append images-to-resize start-with-files))
