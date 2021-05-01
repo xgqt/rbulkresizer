@@ -33,6 +33,9 @@
  )
 
 
+;;; Images to resize
+
+;; Initial value - empty list
 (define images-to-resize '())
 
 (define (display-images-to-resize)
@@ -50,12 +53,24 @@
   (send editor-canvas set-editor text)
   )
 
+(define (add-images-to-resize)
+  (let*
+      ([new-images (get-file-list "Pick images to resize")])
+    (cond
+      [(list? new-images)
+       (set! images-to-resize (append images-to-resize new-images))]
+      [else (message-box "No files" "You haven't picked any files")]
+      )
+    )
+  (display-images-to-resize)
+  )
+
 
 ;;; Main frame
 
 (define frame
   (new frame%
-       [label program-name]
+       [label program-titlebar]
        [height 600]
        [width  600]
        )
@@ -77,10 +92,28 @@
      )
   )
 
+(define menu-file-add
+ (new menu-item%
+     [parent menu-file]
+     [label "&Add"]
+     [help-string "Add new files"]
+     [callback (lambda _ (add-images-to-resize))]
+     )
+  )
+
 (define menu-help
   (new menu%
      [parent menu-bar]
      [label "&Help"]
+     )
+  )
+
+(define menu-help-about
+  (new menu-item%
+     [parent menu-help]
+     [label "&About"]
+     [help-string "Show information about the application"]
+     [callback (lambda _ (message-box program-name program-license))]
      )
   )
 
@@ -94,18 +127,7 @@
      [min-height 60]
      [stretchable-height #f]
      [stretchable-width #t]
-     [callback
-      (lambda _
-        (let*
-            ([new-images (get-file-list "Pick images to resize")])
-          (cond
-            [(list? new-images)
-             (set! images-to-resize (append images-to-resize new-images))]
-            [else (message-box "No files" "You haven't picked any files")]
-            )
-          )
-        (display-images-to-resize)
-        )]
+     [callback (lambda _ (add-images-to-resize))]
      )
   )
 
