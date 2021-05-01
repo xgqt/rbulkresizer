@@ -102,6 +102,7 @@
      )
   )
 
+;; File menu
 (define menu-file
  (new menu%
      [parent menu-bar]
@@ -136,6 +137,16 @@
      )
   )
 
+(define menu-file-exit
+ (new menu-item%
+     [parent menu-file]
+     [label "&Exit"]
+     [help-string "Exit the application"]
+     [callback (lambda _ (app-exit))]
+     )
+  )
+
+;; Help menu
 (define menu-help
   (new menu%
      [parent menu-bar]
