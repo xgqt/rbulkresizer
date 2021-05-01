@@ -1,0 +1,48 @@
+# This file is part of rbulkresizer.
+
+# rbulkresizer is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, version 3.
+
+# rbulkresizer is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with rbulkresizer.  If not, see <https://www.gnu.org/licenses/>.
+
+# Copyright (c) 2021, Maciej Barć <xgqt@riseup.net>
+# Licensed under the GNU GPL v3 License
+# SPDX-License-Identifier: GPL-3.0-only
+
+
+on: [push, pull_request]
+name: CI
+
+jobs:
+  build:
+    name: "Build on Racket '${{ matrix.racket-version }}' (${{ matrix.racket-variant }})"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        racket-version: ["stable", "current"]
+        racket-variant: ["BC", "CS"]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: Bogdanp/setup-racket@v0.12
+        with:
+          architecture: x64
+          distribution: full
+          variant: ${{ matrix.racket-variant }}
+          version: ${{ matrix.racket-version }}
+
+      - name: Installing rbulkresizer and its dependencies
+        run: raco pkg install --no-docs --auto --name rbulkresizer
+
+      - name: Compiling rbulkresizer and building its docs
+        run: raco setup --check-pkg-deps --unused-pkg-deps rbulkresizer
+
+      - name: Testing rbulkresizer
+        run: raco test -x -p rbulkresizer

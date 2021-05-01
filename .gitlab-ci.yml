@@ -1,0 +1,22 @@
+---
+
+
+image: debian:testing-20210208
+
+
+stages:
+  - test
+
+
+before_script:
+  - apt-get update
+  - apt-get install -y make racket sqlite3
+
+test:
+  stage: test
+  script:
+    - make compile
+    - make install
+    - make setup
+    - make check-deps
+    - make test

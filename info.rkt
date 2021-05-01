@@ -34,6 +34,7 @@
   '(
     "base"
     "gui"
+    "htdp-lib"
     )
   )
 (define build-deps
