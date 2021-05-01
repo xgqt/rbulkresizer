@@ -31,6 +31,7 @@
  percentage-scale
  resize-elements
  scale-to-element
+ scale-to-longest-element
  )
 
 
@@ -72,4 +73,12 @@
        )
     (scale to-scale image)
     )
+  )
+
+(define (scale-to-longest-element size image)
+  "Take the longest element and scale image to SIZE based on it."
+  (if (> (image-width image) (image-height image))
+      (scale-to-element 'width size image)
+      (scale-to-element 'height size image)
+      )
   )

@@ -114,16 +114,17 @@
 
 (define radio-box
   (new radio-box%
-     [parent frame]
-     [label "Resize method"]
-     [choices '(
-                "Percentage - scale whole image by given percentage"  ; 0
-                "Dimensions - resize to target width and height"      ; 1
-                "Width      - scale to crate target width"            ; 2
-                "Height     - scale to crate target height"           ; 3
-                )
-              ]
-     )
+       [parent frame]
+       [label "Resize method"]
+       [choices '(
+                  "Percentage - scale whole image by given percentage"  ; 0
+                  "Dimensions - resize to target width and height"      ; 1
+                  "Width      - scale to crate target width"            ; 2
+                  "Height     - scale to crate target height"           ; 3
+                  "Longest side - scale to target width or height based on the longest side"  ; 4
+                  )
+                ]
+       )
   )
 
 
@@ -151,6 +152,14 @@
   (new text-field%
        [parent frame]
        [label "Height"]
+       [init-value "500"]
+       )
+  )
+
+(define field-longest
+  (new text-field%
+       [parent frame]
+       [label "Longest"]
        [init-value "500"]
        )
   )
@@ -204,6 +213,7 @@
          (string->number (send field-percentage get-value))
          (string->number (send field-width      get-value))
          (string->number (send field-height     get-value))
+         (string->number (send field-longest    get-value))
          (send radio-box get-selection)
          images-to-resize
          )

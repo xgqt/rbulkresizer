@@ -36,7 +36,7 @@
 ;; (resize percentage width height (send radio-box get-selection)
 ;;  images-to-resize)
 
-(define (resize percentage width height selection image-path-list)
+(define (resize percentage width height longest selection image-path-list)
   (map
    (lambda (og-path)
      (let*
@@ -51,6 +51,8 @@
                       [(2) (scale-to-element 'width width og-image)]
                       ;; Height
                       [(3) (scale-to-element 'height height og-image)]
+                      ;; Longest side
+                      [(4) (scale-to-longest-element longest og-image)]
                       ;; Other
                       [else (error "[ERROR] No support for this method")]
                       )
