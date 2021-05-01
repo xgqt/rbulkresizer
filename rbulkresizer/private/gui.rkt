@@ -39,6 +39,7 @@
 ;; Initial value - empty list
 (define images-to-resize '())
 
+;; Show the contents of IMAGES-TO-RESIZE on the canvas and console
 (define (display-images-to-resize)
   "On console and canvas write the paths of files from IMAGES-TO-RESIZE."
 

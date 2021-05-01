@@ -32,10 +32,6 @@
  )
 
 
-;; To be used in a way similar to this:
-;; (resize percentage width height (send radio-box get-selection)
-;;  images-to-resize)
-
 (define (resize percentage width height longest selection image-path-list)
   (map
    (lambda (og-path)
