@@ -20,10 +20,11 @@
 ;; SPDX-License-Identifier: GPL-3.0-only
 
 
-#lang racket
+#lang racket/base
 
 (require
  racket/os
+ racket/string
  )
 
 (provide

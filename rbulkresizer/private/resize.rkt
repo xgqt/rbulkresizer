@@ -20,7 +20,7 @@
 ;; SPDX-License-Identifier: GPL-3.0-only
 
 
-#lang racket
+#lang racket/base
 
 (require
  2htdp/image
