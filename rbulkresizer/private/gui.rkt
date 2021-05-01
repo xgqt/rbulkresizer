@@ -65,6 +65,11 @@
   (display-images-to-resize)
   )
 
+(define (clean-images-to-resize)
+ (set! images-to-resize '())
+ (display-images-to-resize)
+ )
+
 
 ;;; Main frame
 
@@ -98,6 +103,15 @@
      [label "&Add"]
      [help-string "Add new files"]
      [callback (lambda _ (add-images-to-resize))]
+     )
+  )
+
+(define menu-file-clean
+ (new menu-item%
+     [parent menu-file]
+     [label "&Clean"]
+     [help-string "Clean the list of selected files"]
+     [callback (lambda _ (clean-images-to-resize))]
      )
   )
 
@@ -251,10 +265,7 @@
      [label "Clean"]
      [stretchable-height #f]
      [stretchable-width #f]
-     [callback (lambda _
-                 (set! images-to-resize '())
-                 (display-images-to-resize)
-                 )]
+     [callback (lambda _ (clean-images-to-resize))]
      )
   )
 
