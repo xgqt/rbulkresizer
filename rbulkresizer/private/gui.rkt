@@ -30,7 +30,7 @@
  )
 
 (provide
- start-app
+ app-start
  )
 
 
@@ -283,7 +283,7 @@
   )
 
 
-(define (start-app
+(define (app-start
          #:start-with-files [start-with-files '()]
          )
   "Start the application"

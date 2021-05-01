@@ -35,7 +35,7 @@
    #:program program-name
 
    #:args args
-   (start-app #:start-with-files (map string->path args))
+   (app-start #:start-with-files (map string->path args))
    )
 
   )
