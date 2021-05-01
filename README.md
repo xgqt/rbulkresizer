@@ -1,4 +1,4 @@
-# RBulkResizeR
+# R Bulk ResizeR
 
 <p align="center">
     <a href="https://gitlab.com/xgqt/rbulkresizer/pipelines">
