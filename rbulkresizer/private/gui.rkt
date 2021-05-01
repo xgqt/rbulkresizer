@@ -67,9 +67,20 @@
   )
 
 (define (clean-images-to-resize)
- (set! images-to-resize '())
- (display-images-to-resize)
- )
+  (set! images-to-resize '())
+  (display-images-to-resize)
+  )
+
+(define (resize-start)
+  (resize
+   (string->number (send field-percentage get-value))
+   (string->number (send field-width      get-value))
+   (string->number (send field-height     get-value))
+   (string->number (send field-longest    get-value))
+   (send radio-box get-selection)
+   images-to-resize
+   )
+  )
 
 
 ;;; Main frame
@@ -104,6 +115,15 @@
      [label "&Add"]
      [help-string "Add new files"]
      [callback (lambda _ (add-images-to-resize))]
+     )
+  )
+
+(define menu-file-resize
+ (new menu-item%
+     [parent menu-file]
+     [label "&Resize"]
+     [help-string "Resize picked files"]
+     [callback (lambda _ (resize-start))]
      )
   )
 
@@ -245,16 +265,7 @@
      [stretchable-height #f]
      [stretchable-width #f]
      [callback
-      (lambda _
-        (resize
-         (string->number (send field-percentage get-value))
-         (string->number (send field-width      get-value))
-         (string->number (send field-height     get-value))
-         (string->number (send field-longest    get-value))
-         (send radio-box get-selection)
-         images-to-resize
-         )
-        )
+      (lambda _ (resize-start))
       ]
      )
   )
