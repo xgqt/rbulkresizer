@@ -23,108 +23,19 @@
 #lang racket/base
 
 (require
- (prefix-in image:: 2htdp/image)
- racket/format
- racket/gui
+ racket/cmdline
+ "private/gui.rkt"
+ "private/program-name.rkt"
  )
 
 
-(define program-name "R Bulk ResizeR")
+(module+ main
 
+  (command-line
+   #:program program-name
 
-;;; Main frame
+   #:args args
+   (start-app #:start-with-files (map string->path args))
+   )
 
-(define frame
-  (new frame%
-       [label program-name]
-       [height 600]
-       [width  500]
-       )
   )
-
-
-;;; Menu bar
-
-(define menu-bar
-  (new menu-bar%
-     [parent frame]
-     )
-  )
-
-(define menu-file
- (new menu%
-     [parent menu-bar]
-     [label "&File"]
-     ))
-
-(define menu-help
-  (new menu%
-     [parent menu-bar]
-     [label "&Help"]
-     )
-  )
-
-
-;;; File picker
-
-(define button-pick-file
- (new button%
-     [parent frame]
-     [label "Pick file"]
-     [min-height 100]
-     [stretchable-height #f]
-     [stretchable-width #t]
-     )
-  )
-
-
-;;; Radio box
-
-(define radio-box
-  (new radio-box%
-     [parent frame]
-     [label "Pick resize method"]
-     [choices '(
-                "Percentage"
-                "Dimensions"
-                "Width"
-                "Height"
-                )
-              ]
-     )
-  )
-
-
-;;; Preview
-
-(define group-box-panel
-  (new group-box-panel%
-     [parent frame]
-     [label "Preview"]
-     )
-  )
-
-
-;;; Finishing buttons
-
-(define button-ok
- (new button%
-     [parent frame]
-     [label "OK"]
-     [stretchable-height #f]
-     [stretchable-width #f]
-     )
-  )
-
-(define button-exit
- (new button%
-     [parent frame]
-     [label "Exit"]
-     [stretchable-height #f]
-     [stretchable-width #f]
-     [callback (lambda (x y) (exit))]
-     )
-  )
-
-
-(send frame show #t)

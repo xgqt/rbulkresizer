@@ -18,3 +18,12 @@
 ;; Copyright (c) 2021, Maciej Barć <xgqt@riseup.net>
 ;; Licensed under the GNU GPL v3 License
 ;; SPDX-License-Identifier: GPL-3.0-only
+
+
+#lang info
+
+
+(define collection '(rbulkresizer))
+
+(define racket-launcher-names '("rbulkresizer"))
+(define racket-launcher-libraries '("main.rkt"))

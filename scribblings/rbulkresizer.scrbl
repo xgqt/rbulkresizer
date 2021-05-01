@@ -20,4 +20,16 @@
 ;; SPDX-License-Identifier: GPL-3.0-only
 
 
-#lang info
+#lang scribble/manual
+
+@require[@for-label[rbulkresizer
+                    racket/base]]
+
+
+@title{rbulkresizer}
+@author{Mythical Linux}
+
+
+@defmodule[rbulkresizer]
+
+"Graphical bulk picture resize tool."

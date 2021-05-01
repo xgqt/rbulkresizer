@@ -20,4 +20,20 @@
 ;; SPDX-License-Identifier: GPL-3.0-only
 
 
-#lang info
+#lang racket
+
+(require
+ racket/os
+ )
+
+(provide
+ program-name
+ )
+
+
+(define program-name
+  (string-append
+   "R Bulk ResizeR"
+   " [" (number->string (getpid)) "@" (gethostname) "]"
+   )
+  )
