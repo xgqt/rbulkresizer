@@ -24,6 +24,7 @@
 
 (require
  racket/gui
+ "gui-helpers.rkt"
  "program-name.rkt"
  "resize.rkt"
  )
@@ -277,7 +278,7 @@
      [label "Exit"]
      [stretchable-height #f]
      [stretchable-width #f]
-     [callback (lambda _ (exit))]
+     [callback (lambda _ (app-exit))]
      )
   )
 
