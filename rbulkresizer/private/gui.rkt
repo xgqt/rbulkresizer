@@ -227,6 +227,28 @@
                   "Longest side - scale to target width or height based on the longest side"  ; 4
                   )
                 ]
+       ;; FIXME: There's probably a better way to do this
+       [callback (lambda _
+                   (case (send radio-box get-selection)
+                     [(0) (hide-all-fields)
+                          (send field-percentage show #t)
+                          ]
+                     [(1) (hide-all-fields)
+                          (send field-width      show #t)
+                          (send field-height     show #t)
+                          ]
+                     [(2) (hide-all-fields)
+                          (send field-width      show #t)
+                          ]
+                     [(3) (hide-all-fields)
+                          (send field-height     show #t)
+                          ]
+                     [(4) (hide-all-fields)
+                          (send field-longest    show #t)
+                          ]
+                     )
+                   )
+                 ]
        )
   )
 
@@ -265,6 +287,13 @@
        [label "Longest"]
        [init-value "500"]
        )
+  )
+
+(define (hide-all-fields)
+  (send field-percentage show #f)
+  (send field-width      show #f)
+  (send field-height     show #f)
+  (send field-longest    show #f)
   )
 
 
@@ -361,6 +390,11 @@
 
   ;; Show the main window frame
   (send frame show #t)
+
+  ;; Disable inactive fields
+  ;; Leave the default one - percentage
+  (hide-all-fields)
+  (send field-percentage show #t)
 
   ;; Display of images
   (display-images-to-resize)
