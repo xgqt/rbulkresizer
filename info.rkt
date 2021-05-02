@@ -35,6 +35,7 @@
     "base"
     "gui"
     "htdp-lib"
+    "net-lib"
     )
   )
 (define build-deps
