@@ -4,8 +4,8 @@
     <a href="https://gitlab.com/xgqt/rbulkresizer/pipelines">
         <img src="https://gitlab.com/xgqt/rbulkresizer/badges/master/pipeline.svg">
     </a>
-    <a href="https://github.com/xgqt/rbulkresizer/actions/workflows/ci.yml/badge.svg">
-        <img src="https://github.com/xgqt/rbulkresizer/actions/workflows/ci.yml">
+    <a href="https://github.com/xgqt/rbulkresizer/actions/workflows/ci.yml">
+        <img src="https://github.com/xgqt/rbulkresizer/actions/workflows/ci.yml/badge.svg">
     </a>
     <a href="https://gitlab.com/xgqt/rbulkresizer/commits/master.atom">
         <img src="https://img.shields.io/badge/feed-atom-orange.svg">
