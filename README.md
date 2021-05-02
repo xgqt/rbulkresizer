@@ -21,11 +21,13 @@ Graphical bulk picture resize tool written in Racket.
 # About
 
 This app is meant to be a alternative to https://bulkresizephotos.com
-A memeber of my family was using that service to resize their photos
+A member of my family was using that service to resize their photos
 so I thought I would write a libre replacement.
 
 
 # Bugs
+
+Report bugs to [the upstream on GitLab](https://gitlab.com/xgqt/rbulkresizer).
 
 - few TODOs and FIXMEs here and there
 - can only create PNG images
