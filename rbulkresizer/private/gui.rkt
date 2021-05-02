@@ -94,6 +94,13 @@
        )
   )
 
+(define (app-close)
+  "`app-close' is the soft exit and `app-exit' from 'gui-helpers.rkt' is hard"
+  (displayln "[WARNING] Closing the application")
+  (displayln "[ INFO  ] Bye...")
+  (send frame show #f)
+  )
+
 
 ;;; Menu bar
 
@@ -135,6 +142,15 @@
      [label "&Clean"]
      [help-string "Clean the list of selected files"]
      [callback (lambda _ (clean-images-to-resize))]
+     )
+  )
+
+(define menu-file-close
+ (new menu-item%
+     [parent menu-file]
+     [label "&Close"]
+     [help-string "Close the application"]
+     [callback (lambda _ (app-close))]
      )
   )
 
@@ -311,8 +327,18 @@
      )
   )
 
-;; Exit the application.
-;; FIXME: This kills the REPL.
+;; Close the application ("soft" exit).
+(define button-close
+ (new button%
+     [parent horizontal-panel]
+     [label "Close"]
+     [stretchable-height #f]
+     [stretchable-width #f]
+     [callback (lambda _ (app-close))]
+     )
+  )
+
+;; Exit the application ("hard" exit).
 (define button-exit
  (new button%
      [parent horizontal-panel]
