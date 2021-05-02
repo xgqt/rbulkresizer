@@ -33,6 +33,22 @@ Report bugs to [the upstream on GitLab](https://gitlab.com/xgqt/rbulkresizer).
 - can only create PNG images
 
 
+# Compilation
+
+**WARNING!!!** This process is still experimental.
+Better to just install Racket, especially if you are on a GNU+Linux.
+
+Executing `make exe` creates a non-standalone executable `rbulkresizer.exe`.
+
+To create a portable "environment" execute `make dist` which runs `make exe`
+and then creates a directory `rbulkresizer_distribution` and a archive
+`rbulkresizer_distribution.tar.gz` that can be run on other Linux machines.
+
+To run `rbulkresizer` on Linux systems without Racket use the created
+`rbulkresizer_distribution.tar.gz` archive: unpack it and change directory
+to the created directory (`rbulkresizer`) then run `./bin/rbulkresizer.exe`.
+
+
 # License
 
 SPDX-License-Identifier: GPL-3.0-only
