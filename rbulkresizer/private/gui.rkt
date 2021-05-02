@@ -164,6 +164,24 @@
      )
   )
 
+(define menu-help-repository
+  (new menu-item%
+     [parent menu-help]
+     [label "&Repository"]
+     [help-string "Open the repository URL"]
+     [callback (lambda _ (repo-open))]
+     )
+  )
+
+(define menu-help-repository-issues
+  (new menu-item%
+     [parent menu-help]
+     [label "&Report a bug"]
+     [help-string "Report a bug in GitLab issues"]
+     [callback (lambda _ (repo-open-issues))]
+     )
+  )
+
 
 ;;; File picker
 

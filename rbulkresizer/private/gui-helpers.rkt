@@ -22,8 +22,14 @@
 
 #lang racket/base
 
+(require
+ net/sendurl
+ )
+
 (provide
  app-exit
+ repo-open
+ repo-open-issues
  )
 
 
@@ -31,4 +37,17 @@
   (displayln "[WARNING] Exiting the application")
   (displayln "[ INFO  ] Bye...")
   (exit)
+  )
+
+
+;;; Repo
+
+(define repo-url-base "https://gitlab.com/xgqt/rbulkresizer/")
+
+(define (repo-open)
+  (send-url repo-url-base)
+  )
+
+(define (repo-open-issues)
+  (send-url (string-append repo-url-base "-/issues"))
   )
