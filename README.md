@@ -49,7 +49,7 @@ and then creates a directory `rbulkresizer_distribution` and a archive
 
 To run `rbulkresizer` on Linux systems without Racket use the created
 `rbulkresizer_distribution.tar.gz` archive: unpack it and change directory
-to the created directory (`rbulkresizer`) then run `./bin/rbulkresizer.exe`.
+to the created directory (`rbulkresizer_distribution`) then run `./bin/rbulkresizer.exe`.
 
 
 ## Windows
