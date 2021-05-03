@@ -18,9 +18,9 @@
 
 
 PACKAGE-NAME		:= $(shell basename $(abspath .))
-PACKAGE-EXE			:= $(PACKAGE-NAME).exe
-PACKAGE-DIST		:= $(PACKAGE-NAME)_distribution
-PACKAGE-DIST-TAR	:= $(PACKAGE-DIST).tar.gz
+PACKAGE-EXE			:= $(PACKAGE-NAME)
+PACKAGE-BIN-DIR		:= ./bin
+PACKAGE-BIN			:= $(PACKAGE-BIN-DIR)/$(PACKAGE-EXE)
 PACKAGE-ZIP			:= $(PACKAGE-NAME).zip
 
 RACKET				:= racket
@@ -29,7 +29,7 @@ RACO				:= raco
 ENTRYPOINT			:= $(PACKAGE-NAME)/main.rkt
 COMPILE-FLAGS		:= -v
 RUN-FLAGS			:=
-EXE-FLAGS			:= -v -o $(PACKAGE-EXE)
+EXE-FLAGS			:= --orig-exe -v -o $(PACKAGE-BIN)
 DO-DOCS				:= --no-docs
 INSTALL-FLAGS		:= --auto $(DO-DOCS)
 DEPS-FLAGS			:= --check-pkg-deps --unused-pkg-deps
@@ -50,27 +50,22 @@ install:
 # Distribution
 
 exe:	compile
+	mkdir -p ./bin
 	$(RACO) exe $(EXE-FLAGS) $(ENTRYPOINT)
 
-dist:	exe
-	mkdir -p $(PACKAGE-DIST)
-	$(RACO) distribute $(PACKAGE-DIST) $(PACKAGE-EXE)
-	tar cfz $(PACKAGE-DIST-TAR) $(PACKAGE-DIST)
-
-pkg:
+# Source only
+pkg:	clean
 	$(RACO) pkg create --source $(PWD)
 
 
 # Removal
 
 distclean:
-	if [ -d $(PACKAGE-DIST) ] ; then rm -r $(PACKAGE-DIST) ; fi
-	if [ -f $(PACKAGE-DIST-TAR) ] ; then rm $(PACKAGE-DIST-TAR) ; fi
+	if [ -d $(PACKAGE-BIN-DIR) ] ; then rm -r $(PACKAGE-BIN-DIR) ; fi
 	if [ -f $(PACKAGE-ZIP) ] ; then rm $(PACKAGE-ZIP)* ; fi
 
 clean:	distclean
 	find . -depth -type d -name 'compiled' -exec rm -r {} \;
-	if [ -f $(PACKAGE-EXE) ] ; then rm $(PACKAGE-EXE) ; fi
 
 remove:
 	$(RACO) pkg remove $(DO-DOCS) $(PACKAGE-NAME)
@@ -95,6 +90,6 @@ test:
 
 # Everything
 
-everything-test:	clean compile install setup check-deps test remove clean
+everything-test:	clean compile install setup check-deps test purge
 
-everything-dist:	clean pkg compile dist
+everything-dist:	pkg exe

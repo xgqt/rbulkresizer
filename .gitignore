@@ -22,10 +22,9 @@
 
 *.dep
 *.exe
-*.tar.gz
 *.zip*
 *.zo
-*_distribution/
 *~
+/bin/
 /doc/
 compiled/

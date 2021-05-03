@@ -38,23 +38,18 @@ Report bugs to [the upstream on GitLab](https://gitlab.com/xgqt/rbulkresizer).
 **WARNING!!!** This process is still experimental.
 Better to just install [Racket](https://racket-lang.org/download/), especially if you are on GNU+Linux.
 
+By using scripts from this repository the binaries can be found
+in [bin](./bin) directory.
+
 
 ## Linux
 
-Executing `make exe` creates a non-standalone executable `rbulkresizer.exe`.
-
-To create a portable "environment" execute `make dist` which runs `make exe`
-and then creates a directory `rbulkresizer_distribution` and a archive
-`rbulkresizer_distribution.tar.gz` that can be run on other Linux machines.
-
-To run `rbulkresizer` on Linux systems without Racket use the created
-`rbulkresizer_distribution.tar.gz` archive: unpack it and change directory
-to the created directory (`rbulkresizer_distribution`) then run `./bin/rbulkresizer.exe`.
+Execute `make exe`.
 
 
 ## Windows
 
-Run the [exe.ps1](./exe.ps1) script to generate a standalone executable.
+Run the [exe.ps1](./exe.ps1) script.
 
 
 # License

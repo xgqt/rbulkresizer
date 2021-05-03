@@ -20,4 +20,6 @@
 $env:Path += ";C:\Program Files\Racket;C:\Program Files (x86)\Racket"
 
 
-raco exe --embed-dlls --gui -v -o rbulkresizer.exe rbulkresizer\main.rkt
+New-Item -Path 'bin' -ItemType Directory
+
+raco exe --embed-dlls -v -o bin\rbulkresizer.exe rbulkresizer\main.rkt
