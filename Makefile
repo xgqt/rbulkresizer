@@ -82,3 +82,10 @@ check-deps:
 
 test:
 	$(RACO) test --package $(PACKAGE-NAME)
+
+
+# Everything
+
+everything-test:	clean compile install setup check-deps test remove clean
+
+everything-dist:	clean pkg compile dist
