@@ -43,11 +43,14 @@ compile:
 run:
 	$(RACKET) $(RUN-FLAGS) $(ENTRYPOINT)
 
-exe:	compile
-	$(RACO) exe $(EXE-FLAGS) $(ENTRYPOINT)
-
 install:
 	$(RACO) pkg install $(INSTALL-FLAGS) --name $(PACKAGE-NAME)
+
+
+# Distribution
+
+exe:	compile
+	$(RACO) exe $(EXE-FLAGS) $(ENTRYPOINT)
 
 dist:	exe
 	mkdir -p $(PACKAGE-DIST)
@@ -56,6 +59,9 @@ dist:	exe
 
 pkg:
 	$(RACO) pkg create --source $(PWD)
+
+
+# Removal
 
 distclean:
 	if [ -d $(PACKAGE-DIST) ] ; then rm -r $(PACKAGE-DIST) ; fi
@@ -72,6 +78,9 @@ remove:
 purge:	remove clean
 
 reinstall:	remove install
+
+
+# Tests
 
 # This builds docs
 setup:
