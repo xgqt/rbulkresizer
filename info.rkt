@@ -25,7 +25,7 @@
 
 (define pkg-authors '(Maciej Barć))
 (define pkg-desc "Graphical bulk picture resize tool.")
-(define version "1.2.2")
+(define version "1.2.3")
 
 (define collection 'multi)
 (define scribblings '(("scribblings/rbulkresizer.scrbl" ())))
