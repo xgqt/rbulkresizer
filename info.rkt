@@ -33,7 +33,7 @@
 (define deps
   '(
     "base"
-    "gui"
+    "gui-lib"
     "htdp-lib"
     "net-lib"
     )
