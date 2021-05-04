@@ -1,6 +1,9 @@
 # R Bulk ResizeR
 
 <p align="center">
+    <a href="http://pkgs.racket-lang.org/package/rbulkresizer">
+        <img src="https://img.shields.io/badge/raco_pkg_install-rbulkresizer-aa00ff.svg">
+    </a>
     <a href="https://gitlab.com/xgqt/rbulkresizer/pipelines">
         <img src="https://gitlab.com/xgqt/rbulkresizer/badges/master/pipeline.svg">
     </a>
