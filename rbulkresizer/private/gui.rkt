@@ -74,11 +74,18 @@
 
 (define (resize-start)
   (resize
-   (string->number (send field-percentage get-value))
-   (string->number (send field-width      get-value))
-   (string->number (send field-height     get-value))
-   (string->number (send field-longest    get-value))
-   (send radio-box get-selection)
+   #:percentage (string->number (send field-percentage get-value))
+   #:width      (string->number (send field-width      get-value))
+   #:height     (string->number (send field-height     get-value))
+   #:longest    (string->number (send field-longest    get-value))
+   #:selection  (case (send radio-box get-selection)
+                  [(0) 'percentage]
+                  [(1) 'dimensions]
+                  [(2) 'width]
+                  [(3) 'height]
+                  [(4) 'longest]
+                  [else "[ERROR] Bug in RADIO-BOX?"]
+                  )
    images-to-resize
    )
   )

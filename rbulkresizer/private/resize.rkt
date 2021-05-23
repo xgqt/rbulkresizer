@@ -23,7 +23,9 @@
 #lang racket/base
 
 (require
+ (only-in racket/gui/base message-box)
  2htdp/image
+ racket/format
  "resize-functions.rkt"
  )
 
@@ -32,25 +34,77 @@
  )
 
 
-(define (resize percentage width height longest selection image-path-list)
+(define (<0? arg)
+  "False for non-numbers and number greater than 0"
+  (cond
+    [(not (number? arg))  #f]
+    [(< 0 arg)            #f]
+    [else                 #t]
+    )
+  )
+
+;; TODO: test ^
+
+
+(define (error-box msg)
+  "Display a error message box and throw a error."
+  (message-box "ERROR" msg)
+  (error msg)
+  )
+
+
+(define (resize
+         #:percentage [percentage #f]
+         #:width      [width      #f]
+         #:height     [height     #f]
+         #:longest    [longest    #f]
+         #:selection  [selection  #f]
+         image-path-list
+         )
+
+  ;; SELECTION guard to throw error early
+  (case selection
+    ['percentage (when (<0? percentage)
+                   (error-box
+                    (~a "Wrong parameter percentage: " percentage)))
+                 ]
+    ['dimensions (when (or (<0? width) (<0? height))
+                   (error-box
+                    (~a "Wrong parameters width & height: " width height)))
+                 ]
+    ['width      (when (<0? width)
+                   (error-box
+                    (~a "Wrong parameter width: " width)))
+                 ]
+    ['height     (when (<0? height)
+                   (error-box
+                    (~a "Wrong parameter height: " height)))
+                 ]
+    ['longest    (when (<0? longest)
+                   (error-box
+                    (~a "Wrong parameter longest: " longest)))
+                 ]
+    [else        (error-box
+                  "[ERROR] Wrong selection")
+                 ]
+    )
+
   (map
    (lambda (og-path)
      (let*
          (
           [og-image (bitmap/file og-path)]
           [to-image (case selection
-                      ;; Percentage
-                      [(0) (percentage-scale percentage og-image)]
-                      ;; Dimensions
-                      [(1) (resize-elements width height og-image)]
-                      ;; Width
-                      [(2) (scale-to-element 'width width og-image)]
-                      ;; Height
-                      [(3) (scale-to-element 'height height og-image)]
-                      ;; Longest side
-                      [(4) (scale-to-longest-element longest og-image)]
-                      ;; Other
-                      [else (error "[ ERROR ] No support for this method")]
+                      ['percentage
+                       (percentage-scale percentage og-image)]
+                      ['dimensions
+                       (resize-elements width height og-image)]
+                      ['width
+                       (scale-to-element 'width width og-image)]
+                      ['height
+                       (scale-to-element 'height height og-image)]
+                      ['longest
+                       (scale-to-longest-element longest og-image)]
                       )
                     ]
           [to-path (path-replace-extension og-path #"_resized.png")]
