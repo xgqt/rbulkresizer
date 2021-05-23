@@ -43,7 +43,13 @@
     )
   )
 
-;; TODO: test ^
+(module+ test
+  (require rackunit)
+  (check-equal? #f (<0? "no"))
+  (check-equal? #f (<0? 7))
+  (check-equal? #t (<0? -7))
+  (check-equal? #t (<0? 0))
+  )
 
 
 (define (error-box msg)
