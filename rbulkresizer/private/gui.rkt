@@ -130,6 +130,7 @@
      [parent menu-file]
      [label "&Add"]
      [help-string "Add new files"]
+     [shortcut #\o]
      [callback (lambda _ (add-images-to-resize))]
      )
   )
@@ -139,6 +140,7 @@
      [parent menu-file]
      [label "&Resize"]
      [help-string "Resize picked files"]
+     [shortcut #\s]
      [callback (lambda _ (resize-start))]
      )
   )
@@ -148,6 +150,7 @@
      [parent menu-file]
      [label "&Clean"]
      [help-string "Clean the list of selected files"]
+     [shortcut #\c]
      [callback (lambda _ (clean-images-to-resize))]
      )
   )
@@ -157,6 +160,7 @@
      [parent menu-file]
      [label "&Close"]
      [help-string "Close the application"]
+     [shortcut #\w]
      [callback (lambda _ (app-close))]
      )
   )
@@ -166,6 +170,7 @@
      [parent menu-file]
      [label "&Exit"]
      [help-string "Exit the application"]
+     [shortcut #\q]
      [callback (lambda _ (app-exit))]
      )
   )
