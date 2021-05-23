@@ -27,29 +27,12 @@
  2htdp/image
  racket/format
  "resize-functions.rkt"
+ "resize-helpers.rkt"
  )
 
 (provide
  resize
  )
-
-
-(define (<0? arg)
-  "False for non-numbers and number greater than 0"
-  (cond
-    [(not (number? arg))  #f]
-    [(< 0 arg)            #f]
-    [else                 #t]
-    )
-  )
-
-(module+ test
-  (require rackunit)
-  (check-equal? #f (<0? "no"))
-  (check-equal? #f (<0? 7))
-  (check-equal? #t (<0? -7))
-  (check-equal? #t (<0? 0))
-  )
 
 
 (define (error-box msg)
