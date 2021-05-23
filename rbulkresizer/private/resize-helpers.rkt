@@ -22,6 +22,10 @@
 
 #lang racket/base
 
+(provide
+ <0?
+ )
+
 
 (define (<0? arg)
   "False for non-numbers and number greater than 0"
