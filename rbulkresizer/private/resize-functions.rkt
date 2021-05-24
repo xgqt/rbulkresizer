@@ -28,10 +28,7 @@
  )
 
 (provide
- percentage-scale
- resize-elements
- scale-to-element
- scale-to-longest-element
+ (all-defined-out)
  )
 
 

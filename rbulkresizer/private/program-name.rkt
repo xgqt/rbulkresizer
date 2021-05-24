@@ -28,9 +28,7 @@
  )
 
 (provide
- program-name
- program-titlebar
- program-license
+ (all-defined-out)
  )
 
 

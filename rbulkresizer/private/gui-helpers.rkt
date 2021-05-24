@@ -27,9 +27,7 @@
  )
 
 (provide
- app-exit
- repo-open
- repo-open-issues
+ (all-defined-out)
  )
 
 
