@@ -25,6 +25,7 @@
 *.zip*
 *.zo
 *~
+
 /bin/
-/doc/
 compiled/
+doc/
