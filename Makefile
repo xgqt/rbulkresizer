@@ -67,6 +67,7 @@ distclean:
 
 clean:	distclean
 	find . -depth -type d -name 'compiled' -exec rm -r {} \;
+	find . -depth -type d -name 'doc'      -exec rm -r {} \;
 
 remove:
 	$(RACO) pkg remove $(DO-DOCS) $(PACKAGE-NAME)
