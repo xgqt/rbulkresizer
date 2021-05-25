@@ -76,6 +76,8 @@ purge:	remove clean
 
 reinstall:	remove install
 
+resetup:	remove install setup
+
 
 # Tests
 
