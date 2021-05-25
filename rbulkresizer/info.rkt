@@ -27,3 +27,10 @@
 
 (define racket-launcher-names '("rbulkresizer"))
 (define racket-launcher-libraries '("main.rkt"))
+
+(define scribblings
+  '((
+     "scribblings/rbulkresizer.scrbl"
+     () (tool) "rbulkresizer"
+     ))
+  )

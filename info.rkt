@@ -28,7 +28,7 @@
 (define version "1.3.1")
 
 (define collection 'multi)
-(define scribblings '(("scribblings/rbulkresizer.scrbl" ())))
+
 
 (define deps
   '(

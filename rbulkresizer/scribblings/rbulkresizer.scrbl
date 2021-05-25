@@ -26,10 +26,31 @@
                     racket/base]]
 
 
-@title{rbulkresizer}
-@author{Mythical Linux}
+@title{R Bulk ResizeR}
 
+@author[@author+email["Maciej Barć"
+                      "xgqt@riseup.net"]]
+
+
+@section{About}
+
+R Bulk ResizeR, also called rbulkresizer is a graphical
+bulk picture resize tool.
+
+
+@section{rbulkresizer executable}
+
+On commandline the @exec{rbulkresizer} launcher executable takes any number
+of arguments and interprets them as pictures to append to initial list
+of pictures to rezise.
+
+For example:
+@commandline{rbulkresizer ~/Pictures/Screenshots/*.png ~/Downloads/test.jpg}
+
+
+@section{Requiring the rbulkresizer module}
 
 @defmodule[rbulkresizer]
 
-"Graphical bulk picture resize tool."
+Requiring the module is unnecessary, it is reccomended to run
+@exec{rbulkresizer} via it's launcher instead.
