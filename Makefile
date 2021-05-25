@@ -33,6 +33,7 @@ EXE-FLAGS			:= --orig-exe -v -o $(PACKAGE-BIN)
 DO-DOCS				:= --no-docs
 INSTALL-FLAGS		:= --auto $(DO-DOCS)
 DEPS-FLAGS			:= --check-pkg-deps --unused-pkg-deps
+TEST-FLAGS			:= --heartbeat --table
 
 
 all:	install setup test
@@ -84,8 +85,11 @@ setup:
 check-deps:
 	$(RACO) setup $(DO-DOCS) $(DEPS-FLAGS) $(PACKAGE-NAME)
 
+test-local:
+	$(RACO) test $(TEST-FLAGS) ./$(PACKAGE-NAME)
+
 test:
-	$(RACO) test --package $(PACKAGE-NAME)
+	$(RACO) test $(TEST-FLAGS) --package $(PACKAGE-NAME)
 
 
 # Everything
