@@ -20,15 +20,21 @@
 PACKAGE-NAME		:= $(shell basename $(abspath .))
 PACKAGE-EXE			:= $(PACKAGE-NAME)
 PACKAGE-BIN-DIR		:= ./bin
+PACKAGE-DOC-DIR		:= ./doc
+PACKAGE-SCRBL		:= $(PACKAGE-NAME)/scribblings/$(PACKAGE-NAME).scrbl
 PACKAGE-BIN			:= $(PACKAGE-BIN-DIR)/$(PACKAGE-EXE)
 PACKAGE-ZIP			:= $(PACKAGE-NAME).zip
 
+LN					:= ln -fs
+MKDIR				:= mkdir -p
 RACKET				:= racket
 RACO				:= raco
+SCRBL				:= $(RACO) scribble
 
 ENTRYPOINT			:= $(PACKAGE-NAME)/main.rkt
 COMPILE-FLAGS		:= -v
 RUN-FLAGS			:=
+SCRBL-FLAGS			:= --dest $(PACKAGE-DOC-DIR) ++main-xref-in
 EXE-FLAGS			:= --orig-exe -v -o $(PACKAGE-BIN)
 DO-DOCS				:= --no-docs
 INSTALL-FLAGS		:= --auto $(DO-DOCS)
@@ -48,10 +54,32 @@ install:
 	$(RACO) pkg install $(INSTALL-FLAGS) --name $(PACKAGE-NAME)
 
 
+# Documentation
+# WARNING: package has to be installed first
+
+docs-dir:
+	$(MKDIR) $(PACKAGE-DOC-DIR)
+
+docs-html:		docs-dir
+	$(SCRBL) --html $(SCRBL-FLAGS) $(PACKAGE-SCRBL)
+	$(LN) ../$(PACKAGE-DOC-DIR)/$(PACKAGE-NAME).html $(PACKAGE-DOC-DIR)/index.html
+
+docs-latex:		docs-dir
+	$(SCRBL) --latex $(SCRBL-FLAGS) $(PACKAGE-SCRBL)
+
+docs-markdown:	docs-dir
+	$(SCRBL) --markdown $(SCRBL-FLAGS) $(PACKAGE-SCRBL)
+
+docs-text:		docs-dir
+	$(SCRBL) --text $(SCRBL-FLAGS) $(PACKAGE-SCRBL)
+
+docs:			docs-html	docs-latex	docs-markdown	docs-text
+
+
 # Distribution
 
 exe:	compile
-	mkdir -p ./bin
+	$(MKDIR) ./bin
 	$(RACO) exe $(EXE-FLAGS) $(ENTRYPOINT)
 
 # Source only
