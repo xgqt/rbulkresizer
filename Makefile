@@ -39,7 +39,7 @@ EXE-FLAGS			:= --orig-exe -v -o $(PACKAGE-BIN)
 DO-DOCS				:= --no-docs
 INSTALL-FLAGS		:= --auto $(DO-DOCS)
 DEPS-FLAGS			:= --check-pkg-deps --unused-pkg-deps
-TEST-FLAGS			:= --heartbeat --table
+TEST-FLAGS			:= --heartbeat --no-run-if-absent --submodule test --table
 
 
 all:				install setup test
@@ -95,7 +95,7 @@ distclean:
 
 clean:				distclean
 	find . -depth -type d -name 'compiled' -exec rm -r {} \;
-	find . -depth -type d -name 'doc'	   -exec rm -r {} \;
+	find . -depth -type d -name 'doc'      -exec rm -r {} \;
 
 remove:
 	$(RACO) pkg remove $(DO-DOCS) $(PACKAGE-NAME)
