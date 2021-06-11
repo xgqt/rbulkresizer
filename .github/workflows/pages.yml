@@ -43,7 +43,7 @@ jobs:
           architecture: x64
           distribution: full
           variant: CS
-          version: 8.0
+          version: stable
 
       - name: Build docs
         run: make install docs-html
