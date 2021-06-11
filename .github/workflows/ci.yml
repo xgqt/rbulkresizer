@@ -41,11 +41,11 @@ jobs:
           variant: ${{ matrix.racket-variant }}
           version: ${{ matrix.racket-version }}
 
-      - name: Installing rbulkresizer and its dependencies
-        run: raco pkg install --no-docs --auto --name rbulkresizer
+      - name: Installing the project and its dependencies
+        run: make install
 
-      - name: Compiling rbulkresizer and building its docs
-        run: raco setup --check-pkg-deps --unused-pkg-deps rbulkresizer
+      - name: Compiling the project and building its docs
+        run: make setup
 
-      - name: Testing rbulkresizer
-        run: raco test -x -p rbulkresizer
+      - name: Testing the project
+        run: make test
