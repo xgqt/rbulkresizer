@@ -23,8 +23,6 @@
 #lang info
 
 
-(define collection '(rbulkresizer))
-
 (define racket-launcher-names '("rbulkresizer"))
 (define racket-launcher-libraries '("main.rkt"))
 
