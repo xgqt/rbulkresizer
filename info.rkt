@@ -23,25 +23,23 @@
 #lang info
 
 
-(define pkg-authors '(Maciej Barć))
 (define pkg-desc "Graphical bulk picture resize tool.")
+
 (define version "1.3.1")
+
+(define pkg-authors '(xgqt))
+
+(define license 'GPL-3.0-only)
 
 (define collection 'multi)
 
-
 (define deps
-  '(
-    "base"
+  '("base"
     "gui-lib"
     "htdp-lib"
-    "net-lib"
-    )
-  )
+    "net-lib"))
+
 (define build-deps
-  '(
-    "racket-doc"
+  '("racket-doc"
     "rackunit-lib"
-    "scribble-lib"
-    )
-  )
+    "scribble-lib"))
